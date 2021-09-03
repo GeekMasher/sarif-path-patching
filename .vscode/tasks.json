@@ -1,0 +1,39 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run CodeQL Scan",
+            "type": "shell",
+            "command": "pipenv",
+            "args": [
+                "run",
+                "python3",
+                "./sarif-path-patching.py",
+                "--debug",
+                "--sarif",
+                "./examples/input-example.sarif",
+                "--root",
+                "examples/root",
+                "--working",
+                "examples/root/code/src",
+                "-o",
+                "./examples/output.sarif"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "always"
+            },
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "sarif",
+            "type": "promptString",
+            "description": "Sarif File",
+            "default": "./samples/python-testing-queries.sarif"
+        }
+    ]
+}
